@@ -457,7 +457,13 @@ RSSHub 支持使用访问密钥 / 码，允许清单和拒绝清单三种方式�
 
 用户相关路由
 
--   `SPOTIFY_REFRESHTOKEN`：用户在此 Spotify 应用的 refresh token。可以利用 [此 gist](https://gist.github.com/outloudvi/d1bbeb5e989db5385384a223a7263744) 获取。
+-   `SPOTIFY_REFRESHTOKEN`：用户在此 Spotify 应用的 refresh token。可以利用 [alecchendev](https://github.com/alecchendev/spotify-refresh-token) 制作的 [spotify-refresh-token](https://alecchen.dev/spotify-refresh-token/) 获取。
+
+:::tip
+
+记得为 `Personal Top Items` 或 `Personal Saved Tracks` 分别勾选 `user-top-read` 或 `user-library-read` scope。
+
+:::
 
 ### Telegram
 
@@ -467,14 +473,11 @@ RSSHub 支持使用访问密钥 / 码，允许清单和拒绝清单三种方式�
 
 ### Twitter
 
-鉴于 Twitter 和其 API 访问的最新变化，已经设计了一种新的匿名访问 Twitter 的方法。该方法涉及使用在通过 Android 应用程序进行注册流程时创建的临时访客账户。
+建议使用非重要账号，新账号或者不同地区登录可能会被限制登录
 
-详细信息请参阅 [Nitter - Guest Account Branch Deployment](https://github.com/zedeus/nitter/wiki/Guest-Account-Branch-Deployment) 和 [zedeus/nitter#983](https://github.com/zedeus/nitter/issues/983)。
-
-另外我们也准备了一个 Node.js 脚本来帮助你使用代理批量创建这些 token，[请点击这里](https://github.com/DIYgod/RSSHub/tree/master/scripts/twitter-token/generate.js)。
-
--   `TWITTER_OAUTH_TOKEN`: 支持多个 key，用英文逗号 `,` 隔开
--   `TWITTER_OAUTH_TOKEN_SECRET`: 支持多个 key，用英文逗号 `,` 隔开
+-   `TWITTER_USERNAME`: Twitter 用户名
+-   `TWITTER_PASSWORD`: Twitter 密码
+-   `TWITTER_AUTHENTICATION_SECRET`: 可选，Twitter 两步验证 -> 认证应用 -> `otpauth://totp/Twitter:@_RSSHub?secret=xxxxxxxxxxxxxxxx&issuer=Twitter` 中的 secret 部分
 
 ### Wordpress
 
@@ -555,6 +558,10 @@ Web 版认证 token 和 iOS 内购回执认证 token 只需选择其一填入即
 ### 今日热榜
 
 -   `TOPHUB_COOKIE`: 今日热榜登录后的 cookie，目前只需要 `itc_center_user=...` 以获取原始链接
+
+### 米游社
+
+-   `MIHOYO_COOKIE`：登录米游社后的 cookie，用于获取用户关注动态时间线。
 
 ### 南方周末
 

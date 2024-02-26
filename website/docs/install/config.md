@@ -478,7 +478,13 @@ For scientific journal routes
 
 For user data related routes
 
--   `SPOTIFY_REFRESHTOKEN`: The refresh token of the user from the Spotify application. Check [this gist](https://gist.github.com/outloudvi/d1bbeb5e989db5385384a223a7263744) for detailed information.
+-   `SPOTIFY_REFRESHTOKEN`: The refresh token of the user from the Spotify application. You can obtain it through [spotify-refresh-token](https://alecchen.dev/spotify-refresh-token/) by [alecchendev](https://github.com/alecchendev/spotify-refresh-token).
+
+:::tip
+
+Remember to check `user-top-read` and `user-library-read` in the scope for `Personal Top Items` and `Personal Saved Tracks` respectively.
+
+:::
 
 ### Telegram
 
@@ -488,14 +494,11 @@ For user data related routes
 
 ### Twitter
 
-Given the recent changes in Twitter and its API access a new method for accessing Twitter anonymously was devised. This method involves using temporary guest accounts created when going through the onboarding process with the Android app.
+It is recommended to use a non-important account, new accounts or logins from different regions may be restricted.
 
-Please see the details in [Nitter - Guest Account Branch Deployment](https://github.com/zedeus/nitter/wiki/Guest-Account-Branch-Deployment) and [zedeus/nitter#983](https://github.com/zedeus/nitter/issues/983).
-
-In addition, we have prepared a Node.js script to help you use proxies to create these tokens in batches. [Please click here](https://github.com/DIYgod/RSSHub/tree/master/scripts/twitter-token/generate.js).
-
--   `TWITTER_OAUTH_TOKEN`: Support multiple keys, split them with `,`
--   `TWITTER_OAUTH_TOKEN_SECRET`: Support multiple keys, split them with `,`
+-   `TWITTER_USERNAME`: Twitter username
+-   `TWITTER_PASSWORD`: Twitter password
+-   `TWITTER_AUTHENTICATION_SECRET`: Optional, Twitter Two-factor authentication -> Authentication app -> Secret part in `otpauth://totp/Twitter:@_RSSHub?secret=xxxxxxxxxxxxxxxx&issuer=Twitter`
 
 ### Wordpress
 
@@ -572,6 +575,10 @@ Web 版认证 token 和 iOS 内购回执认证 token 只需选择其一填入即
 [申请地址](https://id.qweather.com/#/register?redirect=https%3A%2F%2Fconsole.qweather.com)
 
 -   `HEFENG_KEY`:API key
+
+### 米游社
+
+-   `MIHOYO_COOKIE`：登录米游社后的 cookie，用于获取用户关注动态时间线。
 
 ### 南方周末
 
