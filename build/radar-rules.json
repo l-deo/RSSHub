@@ -1953,15 +1953,18 @@
   },
   "bing.com": {
     "_name": "Bing",
-    "cn": [
+    "www": [
       {
         "title": "每日壁纸",
         "docs": "https://docs.rsshub.app/routes/other",
         "source": [
+          "/",
           "/"
         ],
-        "target": "/bing/"
-      },
+        "target": "/bing/:routeParams?"
+      }
+    ],
+    "cn": [
       {
         "title": "搜索",
         "docs": "https://docs.rsshub.app/routes/other",
@@ -10392,6 +10395,19 @@
       }
     ]
   },
+  "my-formosa.com": {
+    "_name": "美麗島電子報",
+    ".": [
+      {
+        "title": "首页",
+        "docs": "https://docs.rsshub.app/routes/new-media",
+        "source": [
+          "/"
+        ],
+        "target": "/my-formosa/"
+      }
+    ]
+  },
   "mydrivers.com": {
     "_name": "快科技",
     "m": [
@@ -13479,7 +13495,17 @@
     ]
   },
   "ruc.edu.cn": {
-    "_name": "中国人民大学",
+    "_name": "Renmin University of China",
+    "ai": [
+      {
+        "title": "高瓴人工智能学院",
+        "docs": "https://docs.rsshub.app/routes/university",
+        "source": [
+          "/"
+        ],
+        "target": "/ruc/ai/:category?"
+      }
+    ],
     "hr": [
       {
         "title": "人事处",
@@ -15344,6 +15370,14 @@
           "/app/:appid"
         ],
         "target": "/steam/appcommunityfeed/:appid"
+      },
+      {
+        "title": "Workshop Search Results",
+        "docs": "https://docs.rsshub.app/routes/game",
+        "source": [
+          "/app/:appid/workshop/"
+        ],
+        "target": "/steam/workshopsearch/:appid"
       }
     ]
   },
@@ -18466,7 +18500,8 @@
         "title": "用户文章",
         "docs": "https://docs.rsshub.app/routes/social-media",
         "source": [
-          "/:usertype/:id/posts"
+          "/:usertype/:id/posts",
+          "/:usertype/:id"
         ],
         "target": "/zhihu/posts/:usertype/:id"
       },
