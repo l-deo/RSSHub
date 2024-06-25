@@ -4040,6 +4040,45 @@
     "name": "艾莱资讯",
     "url": "rail.ally.net.cn"
   },
+  "alpinelinux": {
+    "routes": {
+      "/pkgs/:name/:routeParams?": {
+        "name": "Packages",
+        "categories": [
+          "program-update"
+        ],
+        "maintainers": [
+          "CaoMeiYouRen"
+        ],
+        "path": "/pkgs/:name/:routeParams?",
+        "parameters": {
+          "name": "Packages name",
+          "routeParams": "Filters of packages type. E.g. branch=edge&repo=main&arch=armv7&maintainer=Jakub%20Jirutka"
+        },
+        "example": "/alpinelinux/pkgs/nodejs",
+        "description": "Alpine Linux packages update",
+        "radar": [
+          {
+            "source": [
+              "https://pkgs.alpinelinux.org/packages"
+            ]
+          }
+        ],
+        "zh": {
+          "name": "软件包",
+          "description": "Alpine Linux 软件包更新"
+        },
+        "location": "pkgs.ts"
+      }
+    },
+    "name": "Alpine Linux",
+    "url": "alpinelinux.org",
+    "description": "Alpine Linux is a security-oriented, lightweight Linux distribution based on musl libc and busybox.",
+    "zh": {
+      "name": "Alpine Linux",
+      "description": "Alpine Linux 是一个基于 musl libc 和 busybox 的面向安全的轻量级 Linux 发行版。"
+    }
+  },
   "alternativeto": {
     "routes": {
       "/platform/:name/:routeParams?": {
@@ -6016,6 +6055,37 @@
     },
     "name": "BBC News Labs",
     "url": "bbcnewslabs.co.uk"
+  },
+  "bc3ts": {
+    "routes": {
+      "/post/list/:sort?": {
+        "path": "/post/list/:sort?",
+        "example": "/bc3ts/post/list",
+        "parameters": {
+          "sort": "排序方式，`1` 為最新，`2` 為熱門，默认為 `1`"
+        },
+        "features": {
+          "antiCrawler": true
+        },
+        "radar": [
+          {
+            "source": [
+              "web.bc3ts.net"
+            ]
+          }
+        ],
+        "name": "動態",
+        "maintainers": [
+          "TonyRL"
+        ],
+        "location": "list.ts"
+      }
+    },
+    "name": "爆料公社",
+    "url": "web.bc3ts.net",
+    "categories": [
+      "new-media"
+    ]
   },
   "bdys": {
     "routes": {
@@ -8162,6 +8232,30 @@
   },
   "bjx": {
     "routes": {
+      "/fd/:type": {
+        "path": "/fd/:type",
+        "categories": [
+          "traditional-media"
+        ],
+        "example": "/bjx/fd/yw",
+        "parameters": {
+          "type": "文章分类"
+        },
+        "features": {
+          "requireConfig": false,
+          "requirePuppeteer": false,
+          "antiCrawler": false,
+          "supportBT": false,
+          "supportPodcast": false,
+          "supportScihub": false
+        },
+        "name": "风电",
+        "maintainers": [
+          "hualiong"
+        ],
+        "description": "`:type` 类型可选如下\n\n  | 要闻 | 政策 | 数据 | 市场 | 企业 | 招标 | 技术 | 报道 |\n| ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- |\n| yw   | zc   | sj   | sc   | mq   | zb   | js   | bd   |",
+        "location": "fd.ts"
+      },
       "/huanbao": {
         "path": "/huanbao",
         "categories": [
@@ -8218,7 +8312,7 @@
       }
     },
     "name": "北极星电力网",
-    "url": "guangfu.bjx.com.cn"
+    "url": "www.bjx.com.cn"
   },
   "blizzard": {
     "routes": {
@@ -8971,6 +9065,75 @@
     },
     "name": "Bluesky (bsky)",
     "url": "bsky.app"
+  },
+  "bt0": {
+    "routes": {
+      "/mv/:number/:domain?": {
+        "path": "/mv/:number/:domain?",
+        "categories": [
+          "multimedia"
+        ],
+        "example": "/bt0/mv/35575567/2",
+        "parameters": {
+          "number": "影视详情id, 网页路径为`/mv/{id}.html`其中的id部分, 一般为8位纯数字",
+          "domain": "数字1-9, 比如1表示请求域名为 1bt0.com, 默认为 2"
+        },
+        "features": {
+          "requireConfig": false,
+          "requirePuppeteer": false,
+          "antiCrawler": false,
+          "supportBT": true,
+          "supportPodcast": false,
+          "supportScihub": false
+        },
+        "radar": [
+          {
+            "source": [
+              "2bt0.com/mv/"
+            ]
+          }
+        ],
+        "name": "影视资源下载列表",
+        "maintainers": [
+          "miemieYaho"
+        ],
+        "location": "mv.ts"
+      },
+      "/tlist/:sc/:domain?": {
+        "path": "/tlist/:sc/:domain?",
+        "categories": [
+          "multimedia"
+        ],
+        "example": "/bt0/tlist/1",
+        "parameters": {
+          "sc": "分类(1-5), 1:电影, 2:电视剧, 3:周热门, 4:月热门, 5:年度热门",
+          "domain": "数字1-9, 比如1表示请求域名为 1bt0.com, 默认为 2"
+        },
+        "features": {
+          "requireConfig": false,
+          "requirePuppeteer": false,
+          "antiCrawler": false,
+          "supportBT": true,
+          "supportPodcast": false,
+          "supportScihub": false
+        },
+        "radar": [
+          {
+            "source": [
+              "2bt0.com/tlist/"
+            ]
+          }
+        ],
+        "name": "最新资源列表",
+        "maintainers": [
+          "miemieYaho"
+        ],
+        "location": "tlist.ts"
+      }
+    },
+    "name": "不太灵影视",
+    "url": "2bt0.com",
+    "description": ":::tip\n  (1-9)bt0.com 都指向同一个\n  :::"
   },
   "btzj": {
     "routes": {
@@ -9835,6 +9998,90 @@
     "name": "参考消息",
     "url": "cankaoxiaoxi.com"
   },
+  "cara": {
+    "routes": {
+      "/likes/:user": {
+        "path": [
+          "/likes/:user"
+        ],
+        "categories": [
+          "social-media"
+        ],
+        "example": "/cara/likes/fengz",
+        "parameters": {
+          "user": "username"
+        },
+        "name": "Likes",
+        "maintainers": [
+          "KarasuShin"
+        ],
+        "radar": [
+          {
+            "source": [
+              "cara.app/:user",
+              "cara.app/:user/*"
+            ],
+            "target": "/likes/:user"
+          }
+        ],
+        "location": "likes.ts"
+      },
+      "/portfolio/:user": {
+        "path": [
+          "/portfolio/:user"
+        ],
+        "categories": [
+          "social-media"
+        ],
+        "example": "/cara/portfolio/fengz",
+        "parameters": {
+          "user": "username"
+        },
+        "name": "Portfolio",
+        "maintainers": [
+          "KarasuShin"
+        ],
+        "radar": [
+          {
+            "source": [
+              "cara.app/:user",
+              "cara.app/:user/*"
+            ],
+            "target": "/portfolio/:user"
+          }
+        ],
+        "location": "portfolio.ts"
+      },
+      "/timeline/:user": {
+        "path": [
+          "/timeline/:user"
+        ],
+        "categories": [
+          "social-media"
+        ],
+        "example": "/cara/timeline/fengz",
+        "parameters": {
+          "user": "username"
+        },
+        "name": "Timeline",
+        "maintainers": [
+          "KarasuShin"
+        ],
+        "radar": [
+          {
+            "source": [
+              "cara.app/:user",
+              "cara.app/:user/*"
+            ],
+            "target": "/timeline/:user"
+          }
+        ],
+        "location": "timeline.ts"
+      }
+    },
+    "name": "Cara",
+    "url": "cara.app"
+  },
   "cartoonmad": {
     "routes": {
       "/comic/:id": {
@@ -10334,6 +10581,36 @@
     },
     "name": "Macau Independent Commission Against Corruption 澳门廉政公署",
     "url": "ccac.org.mo"
+  },
+  "cccfna": {
+    "routes": {
+      "/:category/:type?": {
+        "path": "/:category/:type?",
+        "categories": [
+          "government"
+        ],
+        "example": "/cccfna/meirigengxin",
+        "parameters": {
+          "category": "文章种类，即一级分类，详情见下表",
+          "type": "文章类型，即二级分类，详情见下表"
+        },
+        "radar": [
+          {
+            "source": [
+              "www.cccfna.org.cn/:category/:type?"
+            ]
+          }
+        ],
+        "description": "\n:::tip\n存在**二级分类**的**一级分类**不能单独当作参数，如：`/cccfna/hangyezixun`\n:::\n    \n文章的目录分级如下:\n\n- shanghuidongtai（商会通知）\n- meirigengxin（每日更新）\n- tongzhigonggao（通知公告）\n- hangyezixun（行业资讯）\n  - zhengcedaohang（政策导航）\n  - yujinxinxi（预警信息）\n  - shichangdongtai（市场动态）\n  - gongxuxinxi（供需信息）\n- maoyitongji（贸易统计）\n  - tongjikuaibao（统计快报）\n  - hangyetongji（行业统计）\n  - guobiemaoyi（国别贸易）\n  - maoyizhinan（贸易指南）\n- nongchanpinbaogao（农产品报告）\n  - nongchanpinyuebao（农产品月报）\n  - zhongdianchanpinyuebao（重点产品月报）\n  - zhongdianchanpinzoushi（重点产品走势）",
+        "name": "资讯信息",
+        "maintainers": [
+          "hualiong"
+        ],
+        "location": "index.ts"
+      }
+    },
+    "name": "中国食品土畜进出口商会",
+    "url": "www.cccfna.org.cn"
   },
   "ccf": {
     "routes": {
@@ -30898,6 +31175,49 @@
     "name": "InfoQ 中文",
     "url": "infoq.cn"
   },
+  "informedainews": {
+    "routes": {
+      "/zh-Hans/docs/:type": {
+        "path": "/zh-Hans/docs/:type",
+        "categories": [
+          "new-media"
+        ],
+        "example": "/informedainews/zh-Hans/docs/world-news-daily",
+        "parameters": {
+          "type": "world-news-daily|tech-enthusiast-weekly|ai-enthusiast-daily"
+        },
+        "features": {
+          "requireConfig": false,
+          "requirePuppeteer": false,
+          "antiCrawler": false,
+          "supportBT": false,
+          "supportPodcast": false,
+          "supportScihub": false
+        },
+        "radar": [
+          {
+            "source": [
+              "informedainews.com",
+              "informedainews.com/zh-Hans/docs/:type",
+              "informedainews.com/docs/:type"
+            ],
+            "target": "/zh-Hans/docs/:type"
+          }
+        ],
+        "name": "知闻AI",
+        "maintainers": [
+          "guicaiyue"
+        ],
+        "location": "docs.ts"
+      }
+    },
+    "name": "Informed AI News",
+    "url": "informedainews.com",
+    "description": "\n:::tip\ninformed AI RSS feeds:\n\n-   World News Daily: 'https://rsshub.app/informedainews/zh-Hans/docs/world-news-daily'\n-   Tech Enthusiast Weekly: 'https://rsshub.app/informedainews/zh-Hans/docs/tech-enthusiast-weekly'\n-   AI Enthusiast Weekly: 'https://rsshub.app/informedainews/zh-Hans/docs/ai-enthusiast-daily'\n:::",
+    "zh": {
+      "name": "知闻AI"
+    }
+  },
   "informs": {
     "routes": {
       "/:category?": {
@@ -33934,6 +34254,45 @@
     },
     "name": "KeePass",
     "url": "keepass.info"
+  },
+  "kelownacapnews": {
+    "routes": {
+      "/:type": {
+        "path": "/:type",
+        "categories": [
+          "new-media"
+        ],
+        "example": "/kelownacapnews/local-news",
+        "parameters": {
+          "type": "Type of news"
+        },
+        "features": {
+          "requireConfig": false,
+          "requirePuppeteer": false,
+          "antiCrawler": false,
+          "supportBT": false,
+          "supportPodcast": false,
+          "supportScihub": false
+        },
+        "radar": [
+          {
+            "source": [
+              "www.kelownacapnews.com/:type"
+            ],
+            "target": "/:type"
+          }
+        ],
+        "name": "News",
+        "maintainers": [
+          "hualiong"
+        ],
+        "url": "www.kelownacapnews.com",
+        "description": "`type` is as follows:\n  \n| News type     | Value         | News type    | Value        |\n| ------------- | ------------- | ------------ | ------------ |\n| News          | news          | Sports       | sports       |\n| Local News    | local-news    | Business     | business     |\n| Canadian News | national-news | Trending Now | trending-now |\n| World News    | world-news    | Opinion      | opinion      |\n| Entertainment | entertainment |              |              |",
+        "location": "news.ts"
+      }
+    },
+    "name": "Kelowna Capital News",
+    "url": "www.kelownacapnews.com"
   },
   "kemono": {
     "routes": {
@@ -37101,10 +37460,40 @@
           "DIYgod"
         ],
         "location": "addon.ts"
+      },
+      "/mcr/product/*": {
+        "path": "/mcr/product/*",
+        "categories": [
+          "program-update"
+        ],
+        "example": "/microsoft/mcr/product/dotnet/framework/runtime",
+        "parameters": {
+          "product": "repository path in mcr.microsoft.com"
+        },
+        "features": {
+          "requireConfig": false,
+          "requirePuppeteer": false,
+          "antiCrawler": false,
+          "supportBT": false,
+          "supportPodcast": false,
+          "supportScihub": false
+        },
+        "radar": [
+          {
+            "source": [
+              "https://mcr.microsoft.com/en-us/product/:product/tags"
+            ]
+          }
+        ],
+        "name": "Product tags in mcr.microsoft.com",
+        "maintainers": [
+          "margani"
+        ],
+        "location": "mcr.ts"
       }
     },
-    "name": "Microsoft Edge",
-    "url": "microsoftedge.microsoft.com"
+    "name": "Microsoft",
+    "url": "microsoft.com"
   },
   "mihoyo": {
     "routes": {
@@ -38008,6 +38397,58 @@
     "name": "Modrinth",
     "url": "modrinth.com"
   },
+  "moduzy": {
+    "routes": {
+      "/:type/:hours?": {
+        "path": "/:type/:hours?",
+        "categories": [
+          "multimedia"
+        ],
+        "example": "/moduzy/2",
+        "features": {
+          "requireConfig": false,
+          "requirePuppeteer": false,
+          "antiCrawler": false,
+          "supportBT": false,
+          "supportPodcast": false,
+          "supportScihub": false
+        },
+        "parameters": {
+          "type": "类别ID，具体见下表，为 0 代表全部类别",
+          "hours": "获取截止到几小时前的数据，默认不限"
+        },
+        "radar": [
+          {
+            "source": [
+              "moduzy.cc",
+              "moduzy.net",
+              "moduzy.com",
+              "moduzy1.com",
+              "moduzy2.com",
+              "moduzy3.com",
+              "moduzy4.com",
+              "moduzy5.com",
+              "moduzy6.com",
+              "moduzy7.com",
+              "moduzy8.com",
+              "moduzy9.com",
+              "moduzy10.com"
+            ]
+          }
+        ],
+        "name": "最新资源",
+        "maintainers": [
+          "hualiong"
+        ],
+        "url": "moduzy.net",
+        "description": "\n:::warning\n不建议订阅**全部类别**和**国产动漫**，因为该类型每天的更新量会大幅超过单次抓取的最大上限20条而被截断（**温馨提醒**：该资源网以**动漫资源**为主，部分影视类别可能会没有资源）\n:::\n\n| 类别 | ID | 类别 | ID | 类别 | ID | 类别 | ID |\n| ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- |\n| 国产动漫 | 1 | 日韩动漫 | 2 | 欧美动漫 | 3 | 港台动漫 | 4 |\n| 动漫电影 | 5 | 里番动漫 | 6 | 动作片 | 10 | 喜剧片 | 11 |\n| 爱情片 | 12 | 科幻片 | 13 | 恐怖片 | 14 | 剧情片 | 15 |\n| 战争片 | 16 | 惊悚片 | 17 | 家庭片 | 18 | 古装片 | 19 |\n| 历史片 | 20 | 悬疑片 | 21 | 犯罪片 | 22 | 灾难片 | 23 |\n| 记录片 | 24 | 短片 | 25 | 国产剧 | 26 | 香港剧 | 27 |\n| 韩国剧 | 28 | 欧美剧 | 29 | 台湾剧 | 30 | 日本剧 | 31 |\n| 海外剧 | 32 | 泰国剧 | 33 | 大陆综艺 | 34 | 港台综艺 | 35 |\n| 日韩综艺 | 36 | 欧美综艺 | 37 | 全部类别 | 0 |  |  |",
+        "location": "index.ts"
+      }
+    },
+    "name": "魔都资源网",
+    "url": "www.moduzy.com",
+    "description": "\n:::tip\n魔都资源网有多个备用域名，路由默认使用域名 `moduzy.net` 确保在中国大陆内的实例也能访问。如果你想直接访问源站可以通过以下域名：\n\n- moduzy.com（主域名，大陆内无法访问）\n- moduzy.cc\n- moduzy.net\n- moduzy1.com - moduzy10.com（均可访问）\n\n官方的导航页：[moduzy.vip](https://www.moduzy.vip)\n:::"
+  },
   "mohw": {
     "routes": {
       "/clarification": {
@@ -38344,6 +38785,43 @@
     },
     "name": "快科技",
     "url": "m.mydrivers.com"
+  },
+  "myfans": {
+    "routes": {
+      "/user/:username": {
+        "path": "/user/:username",
+        "categories": [
+          "multimedia"
+        ],
+        "example": "/myfans/user/secret_japan",
+        "parameters": {
+          "username": "User handle"
+        },
+        "features": {
+          "requireConfig": false,
+          "requirePuppeteer": false,
+          "antiCrawler": false,
+          "supportBT": false,
+          "supportPodcast": false,
+          "supportScihub": false
+        },
+        "radar": [
+          {
+            "source": [
+              "myfans.jp/:username",
+              "myfans.jp/:language/:username"
+            ]
+          }
+        ],
+        "name": "User Posts",
+        "maintainers": [
+          "TonyRL"
+        ],
+        "location": "post.ts"
+      }
+    },
+    "name": "myfans",
+    "url": "myfans.jp"
   },
   "myfigurecollection": {
     "routes": {
@@ -49496,6 +49974,36 @@
     "name": "Sakamichi Series 坂道系列官网资讯",
     "url": "sakurazaka46.com"
   },
+  "samd": {
+    "routes": {
+      "news/:typeId": {
+        "path": "news/:typeId",
+        "categories": [
+          "government"
+        ],
+        "example": "/samd/news/440",
+        "parameters": {
+          "type": "文章类型ID，见下表"
+        },
+        "features": {
+          "requireConfig": false,
+          "requirePuppeteer": false,
+          "antiCrawler": false,
+          "supportBT": false,
+          "supportPodcast": false,
+          "supportScihub": false
+        },
+        "description": "| 行业资讯 | 协会动态 | 重要通知 | 政策法规 |\n| --- | --- | --- | --- |\n| 434 | 436 | 438 | 440 |",
+        "name": "资讯信息",
+        "maintainers": [
+          "hualiong"
+        ],
+        "location": "news.ts"
+      }
+    },
+    "name": "深圳市医疗器械行业协会",
+    "url": "www.samd.org.cn"
+  },
   "samsung": {
     "routes": {
       "/research/blog": {
@@ -50982,6 +51490,9 @@
           "junfengP",
           "nczitzk"
         ],
+        "features": {
+          "requirePuppeteer": true
+        },
         "description": "**原创 BT 电影**\n\n  | 国产原创 | 亚洲无码原创 | 亚洲有码原创 | 高清中文字幕 | 三级写真 | VR 视频 | 素人有码 | 欧美无码 | 韩国主播 | 动漫原创 | 综合讨论 |\n  | -------- | ------------ | ------------ | ------------ | -------- | ------- | -------- | -------- | -------- | -------- | -------- |\n  | gcyc     | yzwmyc       | yzymyc       | gqzwzm       | sjxz     | vr      | srym     | omwm     | hgzb     | dmyc     | zhtl     |\n\n  **色花图片**\n\n  | 原创自拍 | 转贴自拍 | 华人街拍 | 亚洲性爱 | 欧美性爱 | 卡通动漫 | 套图下载 |\n  | -------- | -------- | -------- | -------- | -------- | -------- | -------- |\n  | yczp     | ztzp     | hrjp     | yzxa     | omxa     | ktdm     | ttxz     |",
         "location": "index.ts"
       },
@@ -50999,6 +51510,9 @@
           "junfengP",
           "nczitzk"
         ],
+        "features": {
+          "requirePuppeteer": true
+        },
         "description": "**原创 BT 电影**\n\n  | 国产原创 | 亚洲无码原创 | 亚洲有码原创 | 高清中文字幕 | 三级写真 | VR 视频 | 素人有码 | 欧美无码 | 韩国主播 | 动漫原创 | 综合讨论 |\n  | -------- | ------------ | ------------ | ------------ | -------- | ------- | -------- | -------- | -------- | -------- | -------- |\n  | gcyc     | yzwmyc       | yzymyc       | gqzwzm       | sjxz     | vr      | srym     | omwm     | hgzb     | dmyc     | zhtl     |\n\n  **色花图片**\n\n  | 原创自拍 | 转贴自拍 | 华人街拍 | 亚洲性爱 | 欧美性爱 | 卡通动漫 | 套图下载 |\n  | -------- | -------- | -------- | -------- | -------- | -------- | -------- |\n  | yczp     | ztzp     | hrjp     | yzxa     | omxa     | ktdm     | ttxz     |",
         "location": "index.ts"
       },
@@ -51016,6 +51530,9 @@
           "junfengP",
           "nczitzk"
         ],
+        "features": {
+          "requirePuppeteer": true
+        },
         "description": "**原创 BT 电影**\n\n  | 国产原创 | 亚洲无码原创 | 亚洲有码原创 | 高清中文字幕 | 三级写真 | VR 视频 | 素人有码 | 欧美无码 | 韩国主播 | 动漫原创 | 综合讨论 |\n  | -------- | ------------ | ------------ | ------------ | -------- | ------- | -------- | -------- | -------- | -------- | -------- |\n  | gcyc     | yzwmyc       | yzymyc       | gqzwzm       | sjxz     | vr      | srym     | omwm     | hgzb     | dmyc     | zhtl     |\n\n  **色花图片**\n\n  | 原创自拍 | 转贴自拍 | 华人街拍 | 亚洲性爱 | 欧美性爱 | 卡通动漫 | 套图下载 |\n  | -------- | -------- | -------- | -------- | -------- | -------- | -------- |\n  | yczp     | ztzp     | hrjp     | yzxa     | omxa     | ktdm     | ttxz     |",
         "location": "index.ts"
       },
@@ -51033,6 +51550,9 @@
           "junfengP",
           "nczitzk"
         ],
+        "features": {
+          "requirePuppeteer": true
+        },
         "description": "**原创 BT 电影**\n\n  | 国产原创 | 亚洲无码原创 | 亚洲有码原创 | 高清中文字幕 | 三级写真 | VR 视频 | 素人有码 | 欧美无码 | 韩国主播 | 动漫原创 | 综合讨论 |\n  | -------- | ------------ | ------------ | ------------ | -------- | ------- | -------- | -------- | -------- | -------- | -------- |\n  | gcyc     | yzwmyc       | yzymyc       | gqzwzm       | sjxz     | vr      | srym     | omwm     | hgzb     | dmyc     | zhtl     |\n\n  **色花图片**\n\n  | 原创自拍 | 转贴自拍 | 华人街拍 | 亚洲性爱 | 欧美性爱 | 卡通动漫 | 套图下载 |\n  | -------- | -------- | -------- | -------- | -------- | -------- | -------- |\n  | yczp     | ztzp     | hrjp     | yzxa     | omxa     | ktdm     | ttxz     |",
         "location": "index.ts"
       },
@@ -51050,6 +51570,9 @@
           "junfengP",
           "nczitzk"
         ],
+        "features": {
+          "requirePuppeteer": true
+        },
         "description": "**原创 BT 电影**\n\n  | 国产原创 | 亚洲无码原创 | 亚洲有码原创 | 高清中文字幕 | 三级写真 | VR 视频 | 素人有码 | 欧美无码 | 韩国主播 | 动漫原创 | 综合讨论 |\n  | -------- | ------------ | ------------ | ------------ | -------- | ------- | -------- | -------- | -------- | -------- | -------- |\n  | gcyc     | yzwmyc       | yzymyc       | gqzwzm       | sjxz     | vr      | srym     | omwm     | hgzb     | dmyc     | zhtl     |\n\n  **色花图片**\n\n  | 原创自拍 | 转贴自拍 | 华人街拍 | 亚洲性爱 | 欧美性爱 | 卡通动漫 | 套图下载 |\n  | -------- | -------- | -------- | -------- | -------- | -------- | -------- |\n  | yczp     | ztzp     | hrjp     | yzxa     | omxa     | ktdm     | ttxz     |",
         "location": "index.ts"
       },
@@ -52460,6 +52983,63 @@
         "description": "| 通知公告 | 学院动态 | 教学管理 | 动科大讲堂 | 就业信息 |\n  | -------- | -------- | -------- | ---------- | -------- |\n  | tzgg     | xydt     | jxgl     | dkdjt      | zpxx     |",
         "location": "dky.ts"
       },
+      "/jiaowu/jxtz": {
+        "path": "/jiaowu/jxtz",
+        "categories": [
+          "university"
+        ],
+        "example": "/sicau/jiaowu/jxtz",
+        "features": {
+          "requireConfig": false,
+          "requirePuppeteer": false,
+          "antiCrawler": false,
+          "supportBT": false,
+          "supportPodcast": false,
+          "supportScihub": false
+        },
+        "radar": [
+          {
+            "source": [
+              "jiaowu.sicau.edu.cn/web/web/web/index.asp"
+            ],
+            "target": "/jiaowu/jxtz"
+          }
+        ],
+        "name": "教务处",
+        "maintainers": [
+          "hualiong"
+        ],
+        "url": "jiaowu.sicau.edu.cn/",
+        "location": "jiaowu.ts"
+      },
+      "/jk/:gid/:typeId/:sortType/:token": {
+        "path": "/jk/:gid/:typeId/:sortType/:token",
+        "categories": [
+          "university"
+        ],
+        "example": "/sicau/jk/0/0/2/8d95466cf63e537292b303cb92b5958c",
+        "parameters": {
+          "gid": "活动所属组织ID，见下表",
+          "typeId": "活动类别ID，见下表",
+          "sortType": "排序方式，见下表",
+          "token": "访问令牌，可通过示例中的令牌直接访问（会过期）"
+        },
+        "features": {
+          "requireConfig": false,
+          "requirePuppeteer": false,
+          "antiCrawler": true,
+          "supportBT": false,
+          "supportPodcast": false,
+          "supportScihub": false
+        },
+        "name": "二课活动",
+        "maintainers": [
+          "hualiong"
+        ],
+        "url": "jk.sicau.edu.cn",
+        "description": "\n\n:::tip\n**本校学生**可以直接 POST `https://jk.sicau.edu.cn/user/login/v1.0.0/snoLogin` 从返回结果中的 `token` 字段拿到个人令牌，记得在url后添加以下**查询参数**：\n\n-   sid: `f1c97a0e81c24e98adb1ebdadca0699b`\n-   loginName: `你的学号`\n-   password: `你的i川农密码`\n\n:::\n\n:::warning\n由于i川农后台有请求限制，为避免一次性大量请求而被限流，每次只请求结果的第一页数据，即前20条\n:::\n\n**活动所属组织ID：**\n\n| ID   | 组织                 | ID   | 组织               | ID   | 组织                   | ID   | 组织                   |\n| ---- | -------------------- | ---- | ------------------ | ---- | ---------------------- | ---- | ---------------------- |\n| 0    | 全部组织             | 14   | 校纪委             | 28   | 食品学院               | 42   | 经济学院               |\n| 1    | 管理学院             | 15   | 生命科学学院       | 29   | 环境学院               | 43   | 机电学院               |\n| 2    | 学生心理健康服务中心 | 16   | 水利水电学院       | 30   | 国家重点实验室         | 44   | 都江堰校区综合办后管科 |\n| 3    | 档案馆               | 17   | 国合处             | 31   | 党委统战部             | 45   | 园艺学院               |\n| 4    | 马克思主义学院       | 18   | 商旅学院           | 32   | 草业科技学院           | 46   | 资源学院               |\n| 5    | 都江堰校区党政办     | 19   | 风景园林学院       | 33   | 商学院                 | 47   | 学生处                 |\n| 6    | 土木工程学院         | 20   | 建筑与城乡规划学院 | 34   | 党委组织部             | 48   | 农学院                 |\n| 7    | 林学院               | 21   | 体育学院           | 35   | 校团委                 | 49   | 公共管理学院           |\n| 8    | 动物医学院           | 22   | 校体委             | 36   | 法学院                 | 50   | 图书馆                 |\n| 9    | 保卫处               | 23   | 校区团委           | 37   | 水稻研究所             | 51   | 校学生会               |\n| 10   | 理学院               | 24   | 后勤管理处         | 38   | 研究生院               | 52   | 动物科技学院           |\n| 11   | 艺术与传媒学院       | 25   | 教务处             | 39   | 后勤服务总公司         | 53   | 信息工程学院           |\n| 12   | 大学生艺术团         | 26   | 人文学院           | 40   | 招生就业处             |      |                        |\n| 13   | 都江堰校区基础教学部 | 27   | 党委宣传部         | 41   | 学生社团管理与服务中心 |      |                        |\n\n**活动类别ID：**\n\n| ID   | 组织             | ID   | 组织                 | ID   | 组织           |\n| ---- | ---------------- | ---- | -------------------- | ---- | -------------- |\n| 0    | 所有类别         | 5    | 校本文化（校规校纪） | 10   | 体质测试       |\n| 1    | 党团学习         | 6    | 德育—社会实践        | 11   | 文化艺术活动   |\n| 2    | 学生干部社会工作 | 7    | 创新创业类           | 12   | 文艺演出或讲座 |\n| 3    | 校院班任务       | 8    | 科技学术讲座         | 13   | 劳动教育       |\n| 4    | 德育（志愿公益） | 9    | 体育活动（新）       |      |                |\n\n**排序方式：**\n\n| 即将开始 | 最新活动 | 可参与 |\n| -------  | -------- | -------- |\n| 1     | 2     | 4     |\n",
+        "location": "jk.ts"
+      },
       "/yan/:category?": {
         "path": "/yan/:category?",
         "categories": [
@@ -52526,7 +53106,7 @@
       }
     },
     "name": "四川农业大学",
-    "url": "dky.sicau.edu.cn"
+    "url": "www.sicau.edu.cn"
   },
   "sigsac": {
     "routes": {
