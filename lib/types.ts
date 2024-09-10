@@ -125,6 +125,15 @@ interface Namespace extends NamespaceItem {
 
 export type { Namespace };
 
+export enum ViewType {
+    Articles = 0,
+    SocialMedia = 1,
+    Pictures = 2,
+    Videos = 3,
+    Audios = 4,
+    Notifications = 5,
+}
+
 // route
 interface RouteItem {
     /**
@@ -161,7 +170,18 @@ interface RouteItem {
     /**
      * The description of the route parameters
      */
-    parameters?: Record<string, string>;
+    parameters?: Record<
+        string,
+        | string
+        | {
+              description: string;
+              default?: string;
+              options?: {
+                  value: string;
+                  label: string;
+              }[];
+          }
+    >;
 
     /**
      * Hints and additional explanations for users using this route, it will be appended after the route component, supports markdown
@@ -212,6 +232,11 @@ interface RouteItem {
      * The [RSSHub-Radar](https://github.com/DIYgod/RSSHub-Radar) rule of the route
      */
     radar?: RadarItem[];
+
+    /**
+     * The [Follow](https://github.com/RSSNext/follow) default view of the route, default to `ViewType.Articles`
+     */
+    view?: ViewType;
 }
 
 interface Route extends RouteItem {
@@ -260,4 +285,10 @@ export type RadarItem = {
               /** @deprecated Temporary removed  @see https://github.com/DIYgod/RSSHub-Radar/commit/e6079ea1a8c96e89b1b2c2aa6d13c7967788ca3b */
               document: Document
           ) => string);
+};
+
+export type RadarDomain = {
+    _name: string;
+} & {
+    [subdomain: string]: RadarItem[];
 };
