@@ -1471,6 +1471,14 @@
         "title": "News",
         "docs": "https://docs.rsshub.app/routes/traditional-media",
         "source": [
+          "/"
+        ],
+        "target": "/apnews/api/:tags?"
+      },
+      {
+        "title": "News",
+        "docs": "https://docs.rsshub.app/routes/traditional-media",
+        "source": [
           "/:rss"
         ],
         "target": "/apnews/rss/:rss"
@@ -5651,6 +5659,19 @@
       }
     ]
   },
+  "easynomad.cn": {
+    "_name": "轻松游牧-远程工作聚集地",
+    ".": [
+      {
+        "title": "远程工作列表",
+        "docs": "https://docs.rsshub.app/routes/other",
+        "source": [
+          "/"
+        ],
+        "target": "/easynomad/"
+      }
+    ]
+  },
   "ecnu.edu.cn": {
     "_name": "East China Normal University 华东师范大学",
     "acm": [
@@ -6361,6 +6382,19 @@
           "/"
         ],
         "target": "/flyert/preferential"
+      }
+    ]
+  },
+  "follow.is": {
+    "_name": "Follow",
+    "app": [
+      {
+        "title": "User subscriptions",
+        "docs": "https://docs.rsshub.app/routes/other",
+        "source": [
+          "/profile/:uid"
+        ],
+        "target": "/follow/profile/:uid"
       }
     ]
   },
@@ -10827,6 +10861,19 @@
           "/blog/posts"
         ],
         "target": "/kadokawa/blog"
+      }
+    ]
+  },
+  "kakuyomu.jp": {
+    "_name": "カクヨム",
+    ".": [
+      {
+        "title": "投稿",
+        "docs": "https://docs.rsshub.app/routes/reading",
+        "source": [
+          "/works/:id"
+        ],
+        "target": "/kakuyomu/works/:id"
       }
     ]
   },
