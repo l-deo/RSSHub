@@ -183,6 +183,16 @@ export type Config = {
     lightnovel: {
         cookie?: string;
     };
+    lorientlejour: {
+        token?: string;
+        username?: string;
+        password?: string;
+    };
+    malaysiakini: {
+        email?: string;
+        password?: string;
+        refreshToken?: string;
+    };
     manhuagui: {
         cookie?: string;
     };
@@ -278,6 +288,10 @@ export type Config = {
         password?: string[];
         authenticationSecret?: string[];
         authToken?: string[];
+    };
+    uestc: {
+        bbsCookie?: string;
+        bbsAuthStr?: string;
     };
     weibo: {
         app_key?: string;
@@ -558,6 +572,16 @@ const calculateValue = () => {
         lightnovel: {
             cookie: envs.SECURITY_KEY,
         },
+        lorientlejour: {
+            token: envs.LORIENTLEJOUR_TOKEN,
+            username: envs.LORIENTLEJOUR_USERNAME,
+            password: envs.LORIENTLEJOUR_PASSWORD,
+        },
+        malaysiakini: {
+            email: envs.MALAYSIAKINI_EMAIL,
+            password: envs.MALAYSIAKINI_PASSWORD,
+            refreshToken: envs.MALAYSIAKINI_REFRESHTOKEN,
+        },
         manhuagui: {
             cookie: envs.MHGUI_COOKIE,
         },
@@ -657,6 +681,10 @@ const calculateValue = () => {
             password: envs.TWITTER_PASSWORD?.split(','),
             authenticationSecret: envs.TWITTER_AUTHENTICATION_SECRET?.split(','),
             authToken: envs.TWITTER_AUTH_TOKEN?.split(','),
+        },
+        uestc: {
+            bbsCookie: envs.UESTC_BBS_COOKIE,
+            bbsAuthStr: envs.UESTC_BBS_AUTH_STR,
         },
         weibo: {
             app_key: envs.WEIBO_APP_KEY,
