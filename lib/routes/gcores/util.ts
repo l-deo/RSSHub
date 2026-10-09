@@ -1,45 +1,37 @@
-import { type Data, type DataItem } from '@/types';
+import type { CheerioAPI } from 'cheerio';
+import { load } from 'cheerio';
 
-import { art } from '@/utils/render';
-import { getCurrentPath } from '@/utils/helpers';
+import type { Data, DataItem, Language } from '@/types';
 import ofetch from '@/utils/ofetch';
 import { parseDate } from '@/utils/parse-date';
 
-import { type CheerioAPI, load } from 'cheerio';
-import path from 'node:path';
-
-const __dirname = getCurrentPath(import.meta.url);
-
 import { parseContent } from './parser';
+import { renderDescription } from './templates/description';
 
-const baseUrl: string = 'https://www.gcores.com';
-const imageBaseUrl: string = 'https://image.gcores.com';
-const audioBaseUrl: string = 'https://alioss.gcores.com';
+const baseUrl = 'https://www.gcores.com';
+const imageBaseUrl = 'https://image.gcores.com';
+const audioBaseUrl = 'https://alioss.gcores.com';
 
-const baseQuery = {
-    sort: '-published-at',
-    include: 'category,user,media',
-    'filter[list-all]': 1,
-    'filter[is-news]': 1,
-};
+const types = new Set<string>(['radios', 'articles', 'news', 'videos', 'talks']);
 
 const processItems = async (limit: number, query: any, apiUrl: string, targetUrl: string): Promise<Data> => {
     const response = await ofetch(apiUrl, {
-        query: {
-            ...baseQuery,
-            query,
+        query: query ?? {
+            'page[limit]': limit,
+            sort: '-published-at',
+            include: 'category,user,media',
+            'filter[list-all]': 1,
         },
     });
 
-    const included = response.included;
-
     const targetResponse = await ofetch(targetUrl);
     const $: CheerioAPI = load(targetResponse);
-    const language = $('html').attr('lang') ?? 'zh-CN';
+    const language = ($('html').attr('lang') ?? 'zh-CN') as Language;
 
-    let items: DataItem[] = [];
+    const included = response.included;
+    const data = [...response.data, ...included].filter((item) => types.has(item.type));
 
-    items = response.data?.slice(0, limit).map((item): DataItem => {
+    const items: DataItem[] = data?.slice(0, limit).map((item): DataItem => {
         const attributes = item.attributes;
         const relationships = item.relationships;
 
@@ -47,11 +39,16 @@ const processItems = async (limit: number, query: any, apiUrl: string, targetUrl
         const pubDate: number | string = attributes['published-at'];
         const linkUrl: string | undefined = `${item.type}/${item.id}`;
 
-        const categoryObj = relationships?.category?.data;
-        const categories: string[] = categoryObj ? [included.find((i) => i.type === categoryObj.type && i.id === categoryObj.id)?.attributes?.name].filter(Boolean) : [];
+        const categoryObjs = [relationships?.category?.data, relationships?.tag?.data, relationships?.topic?.data].filter(Boolean);
+        const categories: string[] = categoryObjs
+            .map((obj) => {
+                const attributes = included.find((i) => i.type === obj.type && i.id === obj.id)?.attributes;
+                return attributes?.name ?? attributes?.title;
+            })
+            .filter(Boolean);
 
         const authorObj = relationships?.user?.data;
-        const authorIncluded = included.find((i) => i.type === authorObj.type && i.id === authorObj.id);
+        const authorIncluded = authorObj ? included.find((i) => i.type === authorObj.type && i.id === authorObj.id) : undefined;
         const authors: DataItem['author'] = authorIncluded
             ? [
                   {
@@ -62,14 +59,14 @@ const processItems = async (limit: number, query: any, apiUrl: string, targetUrl
               ]
             : undefined;
 
-        const guid: string = `gcores-${item.id}`;
+        const guid = `gcores-${item.id}`;
         const image: string | undefined = (attributes.cover ?? attributes.thumb) ? new URL(attributes.cover ?? attributes.thumb, imageBaseUrl).href : undefined;
         const updated: number | string = pubDate;
 
         let processedItem: DataItem = {
             title,
             pubDate: pubDate ? parseDate(pubDate) : undefined,
-            link: linkUrl,
+            link: new URL(linkUrl, baseUrl).href,
             category: categories,
             author: authors,
             guid,
@@ -94,7 +91,8 @@ const processItems = async (limit: number, query: any, apiUrl: string, targetUrl
                 enclosureType = `audio/${enclosureUrl?.split(/\./).pop()}`;
             } else if (mediaAttrs['original-src']) {
                 enclosureUrl = mediaAttrs['original-src'];
-                enclosureType = 'video/mpeg';
+                const queryString = enclosureUrl?.split(/\?/).pop();
+                enclosureType = `video/${queryString ? (/^id=\d+$/.test(queryString) ? 'taptap' : enclosureUrl?.split(/\./).pop()) : ''}`;
             }
         }
 
@@ -112,7 +110,7 @@ const processItems = async (limit: number, query: any, apiUrl: string, targetUrl
             };
         }
 
-        const description: string = art(path.join(__dirname, 'templates/description.art'), {
+        const description: string = renderDescription({
             images: attributes.cover
                 ? [
                       {
@@ -145,6 +143,7 @@ const processItems = async (limit: number, query: any, apiUrl: string, targetUrl
 
         processedItem = {
             ...processedItem,
+            title: title ?? $(description).text(),
             description,
             content: {
                 html: description,
@@ -169,4 +168,4 @@ const processItems = async (limit: number, query: any, apiUrl: string, targetUrl
     };
 };
 
-export { baseUrl, imageBaseUrl, audioBaseUrl, processItems };
+export { audioBaseUrl, baseUrl, imageBaseUrl, processItems };
